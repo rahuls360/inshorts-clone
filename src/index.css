@@ -27,3 +27,16 @@ body {
 .interactions > * {
   cursor: pointer;
 }
+
+.card-container h3 a {
+  text-decoration: none;
+}
+
+.icon {
+  position: absolute;
+  top: 3%;
+}
+
+.icon > * {
+  cursor: pointer;
+}

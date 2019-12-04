@@ -1,13 +1,15 @@
 import React from 'react';
-import Card from "./Card";
-import {data} from './data';
+import {Switch, Route} from 'react-router-dom';
+import Home from "./Home";
+import DetailedCard from './DetailedCard';
 
 function App() {
   return (
     <div>
-      {data.map(item => (
-        <Card title={item.title} description={item.description} image={item.image} tags={item.tags} key={item.id} id={item.id}/>
-      ))}
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/news/:id" component={DetailedCard} />
+      </Switch>
     </div>
   );
 }
