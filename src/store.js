@@ -9,23 +9,29 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
       case "LIKE":
-        console.log('LIKE', action.data);
-        return {
-          ...state,
-          count: state.count + 1
-        };
+        if(state.likes.includes(action.data) === false){
+          return {
+            ...state,
+            likes: [...state.likes, action.data]
+          };
+        }
+      break;
       case "DISLIKE":
-        console.log('DISLIKE', action.data);
-        return {
-          ...state,
-          count: state.count - 1
-        };
+        if(state.dislikes.includes(action.data) === false){
+          return {
+            ...state,
+            dislikes: [...state.dislikes, action.data]
+          };
+        }
+      break;
       case "BOOKMARK":
-        console.log('BOOKMARK', action.data);
-        return {
-          ...state,
-          count: 0
-        };
+        if(state.bookmarks.includes(action.data) === false){
+          return {
+            ...state,
+            bookmarks: [...state.bookmarks, action.data]
+          };
+        }
+      break;
       default:
         return state;
     }
