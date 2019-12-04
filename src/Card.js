@@ -9,7 +9,7 @@ import {AiOutlineDislike} from 'react-icons/ai';
 import {MdFavorite} from 'react-icons/md';
 import {MdFavoriteBorder} from 'react-icons/md';
 
-const Card = ({ id, title, description, image, tags, likeNews, bookmarkNews, dislikeNews }) => {
+const Card = ({ id, title, description, image, tags, likeNews, bookmarkNews, dislikeNews, likes, dislikes, bookmarks }) => {
     return (
         <div className="card-container">
             <img src={image} alt={title} />
@@ -18,9 +18,9 @@ const Card = ({ id, title, description, image, tags, likeNews, bookmarkNews, dis
                 <span>{tags.join(' | ')}</span>
                 <p>{description}</p>
                 <div className="interactions">
-                    <AiOutlineLike onClick={() => likeNews(id)} color="grey" size="2em"/>
-                    <MdFavoriteBorder onClick={() => bookmarkNews(id)} color="grey" size="2em"/>
-                    <AiOutlineDislike onClick={() => dislikeNews(id)} color="grey" size="2em"/>
+                    <AiOutlineLike onClick={() => likeNews(id)} color={likes.includes(id) ? "green" : "grey"} size="2em"/>
+                    <MdFavoriteBorder onClick={() => bookmarkNews(id)} color={bookmarks.includes(id) ? "yellow" : "grey"} size="2em"/>
+                    <AiOutlineDislike onClick={() => dislikeNews(id)} color={dislikes.includes(id) ? "red" : "grey"} size="2em"/>
                 </div>
             </div>
         </div>
