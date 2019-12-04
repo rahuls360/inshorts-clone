@@ -18,3 +18,12 @@ body {
 .content{
   padding-left: 20px;
 }
+
+.interactions{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.interactions > * {
+  cursor: pointer;
+}
