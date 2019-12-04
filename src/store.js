@@ -1,23 +1,27 @@
 import { createStore } from 'redux';
 
 const initialState = {
-    likes: 0,
-    dislikes: 0,
+    likes: [],
+    dislikes: [],
+    bookmarks: []
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
       case "LIKE":
+        console.log('LIKE', action.data);
         return {
           ...state,
           count: state.count + 1
         };
       case "DISLIKE":
+        console.log('DISLIKE', action.data);
         return {
           ...state,
           count: state.count - 1
         };
       case "BOOKMARK":
+        console.log('BOOKMARK', action.data);
         return {
           ...state,
           count: 0

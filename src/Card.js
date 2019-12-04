@@ -1,9 +1,15 @@
 import React from 'react';
-import {AiTwotoneLike} from 'react-icons/ai';
-import {AiTwotoneDislike} from 'react-icons/ai';
-import {MdFavorite} from 'react-icons/md';
+import {connect} from 'react-redux';
 
-const Card = ({title, description, image, tags}) => {
+// Icons
+import {AiTwotoneLike} from 'react-icons/ai';
+import {AiOutlineLike} from 'react-icons/ai';
+import {AiTwotoneDislike} from 'react-icons/ai';
+import {AiOutlineDislike} from 'react-icons/ai';
+import {MdFavorite} from 'react-icons/md';
+import {MdFavoriteBorder} from 'react-icons/md';
+
+const Card = ({ id, title, description, image, tags, likeNews, bookmarkNews, dislikeNews }) => {
     return (
         <div className="card-container">
             <img src={image} alt={title} />
@@ -12,13 +18,25 @@ const Card = ({title, description, image, tags}) => {
                 <span>{tags.join(' | ')}</span>
                 <p>{description}</p>
                 <div className="interactions">
-                    <AiTwotoneLike color="grey" size="2em"/>
-                    <MdFavorite color="grey" size="2em"/>
-                    <AiTwotoneDislike color="grey" size="2em"/>
+                    <AiOutlineLike onClick={() => likeNews(id)} color="grey" size="2em"/>
+                    <MdFavoriteBorder onClick={() => bookmarkNews(id)} color="grey" size="2em"/>
+                    <AiOutlineDislike onClick={() => dislikeNews(id)} color="grey" size="2em"/>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Card;
+const mapStateToProps = state => ({
+    likes: state.likes,
+    dislikes: state.dislikes,
+    bookmarks: state.bookmarks,
+});
+
+const mapDispathToProps = dispatch => ({
+    likeNews: (id) => dispatch({ type: "LIKE", data: id}),
+    dislikeNews: (id) => dispatch({ type: "DISLIKE", data: id}),
+    bookmarkNews: (id) => dispatch({ type: "BOOKMARK", data: id}),
+})
+
+export default connect(mapStateToProps, mapDispathToProps)(Card);

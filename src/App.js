@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       {data.map(item => (
-        <Card title={item.title} description={item.description} image={item.image} tags={item.tags}/>
+        <Card title={item.title} description={item.description} image={item.image} tags={item.tags} key={item.id} id={item.id}/>
       ))}
     </div>
   );
